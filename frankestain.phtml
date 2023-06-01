@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Calculator</title>
+</head>
+<body>
+<form>
+    <input type="num" name="num1"  placeholder="Number 1" required>
+    <input type="num" name="num2"  placeholder="Number 2" required>
+    <select name="op" id="">
+        <option >Operartions</option>
+        <option >Addition</option>
+        <option >Subtraction</option>
+        <option >Division</option>
+        <option >Multiplication</option>
+        <option >modulo</option>
+    </select><br>
+    <button type="Submit" value="Submit" name="Submit">Calculate</button>
+</form>
+
+
+<h1><?php echo "The answer is: ";
+ if (isset($_GET['Submit'])){
+    $result1 =$_GET['num1'];
+    $result1 = (integer)filter_var( $result1, FILTER_SANITIZE_NUMBER_INT);
+    $result2 =$_GET['num2'];
+    $result2 = (integer)filter_var( $result2, FILTER_SANITIZE_NUMBER_INT);
+    $operations =$_GET['op'];
+    switch ($operations) {
+        case 'Operartions':
+            echo "You need choise a operator";
+            break;
+        
+        case 'Addition':
+            echo ($result1 + $result2);
+            break;
+        case 'Subtraction':
+            echo $result1 - $result2;
+            break;
+        
+        case 'Division':
+            if ($result2===0){
+                echo "It is not possible to divide by 0";
+            }
+            else{
+                echo $result1 / $result2;
+            }
+            break;
+        case 'Multiplication':
+            echo $result1 * $result2;
+            break;
+        
+        case 'modulo':
+            echo $result1 % $result2;
+            break;
+        
+    };
+};
+?></h1>
+</body>
+</html>
